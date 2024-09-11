@@ -15,10 +15,10 @@ function App() {
         <div className="topbar w-full h-[4rem] bg-blue-900 text-white flex items-center justify-center font-bold text-2xl">
           {activeTab}
         </div>
-        <div className="flex-1 flex flex-row ">
-          <div className="sideBar w-[10rem] bg-white text-black flex flex-col font-semibold">
+        <div className="flex-1 flex md:flex-row flex-col">
+          <div className="sideBar md:w-[10rem] w-full  bg-white text-black flex md:flex-col flex-row font-semibold">
             <div
-              className={`tab  cursor-pointer p-4 ${
+              className={`tab  md:w-full w-1/2 cursor-pointer p-4 ${
                 activeTab === "Contact Page" ? "bg-blue-400 text-white" : ""
               }`}
               onClick={() => setActiveTab("Contact Page")}
@@ -26,7 +26,7 @@ function App() {
               Contact
             </div>
             <div
-              className={`tab cursor-pointer p-4 ${
+              className={`tab md:w-full w-1/2 cursor-pointer p-4 ${
                 activeTab !== "Contact Page" ? "bg-blue-400 text-white" : ""
               }`}
               onClick={() => setActiveTab("Charts and Maps")}

@@ -1,18 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-function Map() {
-  const position = [51.505, -0.09];
-  const [mapdata, setMapData] = useState([]);
+interface Country {
+  country: string;
+  countryInfo: { lat: number; long: number };
+  active: number;
+  recovered: number;
+  deaths: number;
+}
 
-  const getCases = async () => {
+function Map() {
+  const position: [number, number] = [51.505, -0.09];
+
+  const getCases = async (): Promise<Country[]> => {
+    // Specify return type as Promise<Country[]>
     const response = await fetch("https://disease.sh/v3/covid-19/countries");
     const data = await response.json(); // Parse the JSON response
     return data;
   };
+
   const { data } = useQuery({
-    queryKey: ["conutries-cases"],
+    queryKey: ["countries-cases"],
     queryFn: getCases,
   });
 
@@ -20,7 +29,7 @@ function Map() {
     <div id="map">
       <MapContainer
         center={position}
-        zoom={3}
+        zoom={5}
         scrollWheelZoom={false}
         style={{ width: "100%", height: "100%" }}
       >
@@ -29,7 +38,7 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {data &&
-          data?.map((country: any, i: number) => (
+          data?.map((country: Country, i: number) => (
             <Marker
               key={i}
               position={[country.countryInfo.lat, country.countryInfo.long]}

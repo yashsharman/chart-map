@@ -81,7 +81,7 @@ const LineGraph: React.FC = () => {
   };
 
   return (
-    <div className="bg-white w-[50vw] h-min p-4 rounded-sm">
+    <div className="bg-white md:w-[30vw] w-full h-min p-4 rounded-sm mt-10">
       <Bar data={chartData} options={options} />;
     </div>
   );
