@@ -1,4 +1,3 @@
-import LineGraph from "./LineGraph";
 import Map from "./Map";
 
 function ChartNMap() {

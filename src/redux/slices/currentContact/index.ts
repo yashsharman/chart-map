@@ -18,7 +18,7 @@ export const currentContactSlice = createSlice({
   name: "currentContact",
   initialState,
   reducers: {
-    updateCurrentContact: (state, action: PayloadAction<Contact>) => {
+    updateCurrentContact: (_, action: PayloadAction<Contact>) => {
       return action.payload;
     },
   },

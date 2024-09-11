@@ -8,7 +8,7 @@ function CreateContact({ closePopup }: { closePopup: Function }) {
   const [firstName, setFirstName] = useState(currentContact.firstName || "");
   const [lastName, setLastName] = useState(currentContact.lastName || "");
   const [status, setStatus] = useState(currentContact.status || "");
-  const [id, setId] = useState(currentContact.userId || NaN);
+  const [id] = useState(currentContact.userId || NaN);
 
   const handleSave = () => {
     if (id) {

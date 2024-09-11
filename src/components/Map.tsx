@@ -6,15 +6,18 @@ import {
   Popup,
   useMapEvents,
 } from "react-leaflet";
+import { LatLng, LocationEvent } from "leaflet";
+
 function Map() {
   function LocationMarker() {
-    const [position, setPosition] = useState(null);
+    const [position, setPosition] = useState<LatLng | null>(null);
+
     const map = useMapEvents({
       click() {
         map.locate();
       },
-      locationfound(e) {
-        setPosition(e.latlng);
+      locationfound(e: LocationEvent) {
+        setPosition(e.latlng); // e.latlng is available in LocationEvent
         map.flyTo(e.latlng, map.getZoom());
       },
     });
@@ -31,6 +34,7 @@ function Map() {
       center={{ lat: 51.505, lng: -0.09 }}
       zoom={13}
       scrollWheelZoom={false}
+      style={{ height: "100vh", width: "100%" }}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
